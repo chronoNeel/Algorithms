@@ -20,11 +20,13 @@ using namespace std;
 #define ffj         for(int j=1;j<=t;j++)
 
 #define prime 101
+int mod = 1231;
 
 ll createHash(string x,int patternSize){
     ll hash=0;
     for(int i=0;i<patternSize;i++){
-        hash+=x[i]*pow(prime,i);
+        hash+=(x[i]*pow(prime,i));
+        hash%=mod;
     }
     return hash;
 }
@@ -37,7 +39,8 @@ bool check(string pattern,string text,int start,int patternSize){
 }
 
 ll newHash(ll hashValue,ll index,string text,int patternSize){
-    return hashValue=(hashValue-text[index])/prime+text[index+patternSize]*pow(prime,patternSize-1);
+    hashValue=(hashValue-text[index])/prime+text[index+patternSize]*pow(prime,patternSize-1);
+    return hashValue%mod;
 }
 
 ve<int> patternSearch(string txt,string pttrn){
@@ -47,6 +50,9 @@ ve<int> patternSearch(string txt,string pttrn){
     ve<int>res;
 
     for(int i=0;i<n-m+1;i++){
+        cout<<patternHash<<" "<<textHash<<endl;
+        cout<<patternHash%mod<<" "<<textHash%mod<<endl;
+        
         if(patternHash==textHash&&check(pttrn,txt,i,m)){
             res.pb(i);
         }
