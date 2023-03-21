@@ -42,7 +42,7 @@ int main()
         graph[x].push_back(y);
         graph[y].push_back(x);
     }
-    for(int i=0;i<n;i++)if(!vis.count(i))dfs(0);
+    for(int i=0;i<n;i++)if(!vis.count(i))dfs(i);
     cout<<endl;
     for(int i=0;i<n;i++)cout<<"Node "<<i<<" ---> "<<discovery[i]<<" "<<finish[i]<<endl;
 }
