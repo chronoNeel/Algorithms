@@ -1,3 +1,7 @@
+// Given an undirected graph
+// Check whether the graph contains any cycle or not
+// The graph is represented in adjacency list
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -39,11 +43,11 @@ bool isCycle (vector<vector<int> >& graph) {
 
 int main()
 {
-    int n, V;
-    cin >> n >> V;
+    int n, E;
+    cin >> n >> E;
     vector<vector<int> > edges(n);
 
-    for (int i = 0; i < V; i++) {
+    for (int i = 0; i < E; i++) {
         int u, v;
         cin >> u >> v;
         edges[u].push_back(v);
