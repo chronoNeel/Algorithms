@@ -32,24 +32,25 @@ vector<vector<string>> groupAnagram_usingSorting(vector<string> strs)
 // Time complexity: O(nk)
 // Space complexity: O(nk)
 
-vector<vector<string>> groupAnagram_usingFrequency(vector<string> strs)
-{
-    map<map<char, int>, vector<string>> hash;
-    for (auto str : strs)
-    {
-        map<char, int> temp;
-        for (auto ch : str)
-        {
-            temp[ch]++;
+vector<vector<string>> groupAnagram_usingFrequency(vector<string> strs) {
+    unordered_map<string, vector<string>> hash;
+    for (auto str : strs) {
+        int count[26] = {0}; 
+        for (auto ch : str) {
+            count[ch - 'a']++;
         }
-        hash[temp].push_back(str);
+        string key;
+        for (int i = 0; i < 26; i++) {
+            if (count[i] > 0) {
+                key += string(1, 'a' + i) + to_string(count[i]); 
+            }
+        }
+        hash[key].push_back(str);
     }
     vector<vector<string>> res;
-    for (auto pair : hash)
-    {
+    for (auto pair : hash) {
         res.push_back(pair.second);
     }
-
     return res;
 }
 
